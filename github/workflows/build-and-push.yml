@@ -1,0 +1,29 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push Web Image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}-web:latest ./app
+          docker push ghcr.io/${{ github.repository }}-web:latest
+
+      - name: Tag & Push MySQL Image
+        run: |
+          docker pull mysql:8.0
+          docker tag mysql:8.0 ghcr.io/${{ github.repository }}-db:latest
+          docker push ghcr.io/${{ github.repository }}-db:latest

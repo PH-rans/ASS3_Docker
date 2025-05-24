@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./app      # Verzeichnis mit Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"     # Host:Container
+    environment:
+      DB_HOST: db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
