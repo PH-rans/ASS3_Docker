@@ -16,5 +16,7 @@ COPY main.py ./
 # Gib Port 5000 für Docker frei (Dokumentationszweck)
 EXPOSE 5000
 
+
+
 # Starte die App
 CMD ["python", "main.py"]
