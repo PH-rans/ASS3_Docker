@@ -1,5 +1,9 @@
 name: Build and Push Docker Images
 
+permissions:
+  contents: read       # zum Checkout
+  packages: write
+
 on:
   push:
     branches: [ main ]
