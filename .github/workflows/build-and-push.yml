@@ -19,11 +19,11 @@ jobs:
 
       - name: Build & Push Web Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}-web:latest ./app
-          docker push ghcr.io/${{ github.repository }}-web:latest
+          docker build -t ghcr.io/ph-rans/ass3docker-web:latest ./app
+          docker push ghcr.io/ph-rans/ass3docker-web:latest
 
       - name: Tag & Push MySQL Image
         run: |
           docker pull mysql:8.0
-          docker tag mysql:8.0 ghcr.io/${{ github.repository }}-db:latest
-          docker push ghcr.io/${{ github.repository }}-db:latest
+          docker tag mysql:8.0 ghcr.io/ph-rans/ass3docker-db:latest
+          docker push ghcr.io/ph-rans/ass3docker-db:latest
